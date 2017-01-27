@@ -36,9 +36,7 @@
     <script>
       var map = new ol.Map({
         layers: [
-          new ol.layer.Tile({
-            source: new ol.source.OSM()
-          })
+          new ol.layer.Tile({source: new ol.source.OSM()})
         ],
         target: 'map',
         controls: ol.control.defaults({
@@ -46,23 +44,16 @@
             collapsible: false
           })
         }),
-        view: new ol.View({
-          center: [0, 0],
-          zoom: 2
-        })
+        view: new ol.View({ center: [0, 0], zoom: 2 })
       });
 
-      document.getElementById('zoom-out').onclick = function() {
+      document.getElementById('zoom-out').onclick = function() {changeZoom(-1)};
+      document.getElementById('zoom-in').onclick = function() {changeZoom(1)};
+      function changeZoom(inc) {
         var view = map.getView();
         var zoom = view.getZoom();
-        view.setZoom(zoom - 1);
-      };
-
-      document.getElementById('zoom-in').onclick = function() {
-        var view = map.getView();
-        var zoom = view.getZoom();
-        view.setZoom(zoom + 1);
-      };
+        view.setZoom(zoom + inc);
+      }
     </script>
   </body>
 </html>
